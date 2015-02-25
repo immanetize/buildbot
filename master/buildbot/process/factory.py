@@ -233,3 +233,10 @@ class BasicSVN(GNUAutoconf):
                              configure=configure, configureEnv=configureEnv,
                              compile=compile,
                              test=test)
+
+class Publican(BuildFacory):
+
+    def __init__(self, langs, formats):
+        build_langs = "--langs=" + ','.join(langs)
+        build_formats = "--formats=" + ','.join(formats)
+        self.addStep(ShellCommand(command=["publican", "build", build_langs, build_formats]))
